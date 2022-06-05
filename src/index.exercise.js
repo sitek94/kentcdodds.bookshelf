@@ -53,33 +53,25 @@ function App() {
 }
 
 function LoginForm({onSubmit, buttonText}) {
-  const [username, setUsername] = React.useState('')
-  const [password, setPassword] = React.useState('')
-
   function handleSubmit(event) {
     event.preventDefault()
+    const {username, password} = event.target.elements
 
-    onSubmit({username, password})
+    onSubmit({
+      username: username.value,
+      password: password.value,
+    })
   }
+
   return (
     <form onSubmit={handleSubmit}>
       <div>
         <label htmlFor="username">Username</label>
-        <input
-          id="username"
-          type="text"
-          value={username}
-          onChange={e => setUsername(e.target.value)}
-        />
+        <input id="username" />
       </div>
       <div>
         <label htmlFor="password">Password</label>
-        <input
-          id="password"
-          type="password"
-          value={password}
-          onChange={e => setPassword(e.target.value)}
-        />
+        <input id="password" type="password" />
       </div>
       <div>
         <button type="submit">{buttonText}</button>
